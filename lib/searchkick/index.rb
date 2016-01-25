@@ -537,7 +537,8 @@ module Searchkick
     end
 
     def search_id(record)
-      record.id.is_a?(Numeric) ? record.id : record.id.to_s
+      term = (@options[:index_prefix].present? ? @options[:index_prefix] + "_" + record.id.to_s : record.id)
+      term.is_a?(Numeric) ? term.to_i : term
     end
 
     def search_data(record)

@@ -170,7 +170,7 @@ module Searchkick
     private
 
     def results_query(records, hits)
-      ids = hits.map { |hit| hit["_id"] }
+      ids = hits.map { |hit| hit["_id"].split("_").last.to_i }
 
       if options[:includes]
         records =
